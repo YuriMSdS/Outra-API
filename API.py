@@ -11,7 +11,7 @@ new_user = 'User'(name='Pedro Programas',email='pedrinho@email.com')
 session.add(new_user)
 session.commit()
 
-#Para recuperar os registros da label
+#Para listar os registros da label
 users = session.query("User").all()
 for user in users:
     print(user.name, user.email)
