@@ -3,6 +3,8 @@ import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from marshmallow import Schema, fields, ValidationError
+Session = sessionmaker
+session= Session()
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
@@ -74,5 +76,8 @@ if __name__ == "__main__":
     try:
         db = Database('postgresql://username:password@localhost:5432/database_name')
         user_repo = UserRepository(db)
+    
+    finally:
+        session.close()
 
        
