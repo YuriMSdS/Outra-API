@@ -25,10 +25,6 @@ class UserSchema(Schema):
     name = fields.Str(required=True, min=3)
     email = fields.Email(required=True)
 
-    def validate_name(self, name):
-        if name.lower() == 'admin':
-            raise ValidationError("Nome de usuário não permitido.")
-
 class UserRepository:
     def __init__(self, db):
         self.db = db
