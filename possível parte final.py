@@ -3,8 +3,8 @@ import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from marshmallow import Schema, fields, ValidationError
-Session = sessionmaker
-session= Session()
+Session = sessionmaker()
+session= Session
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
@@ -24,14 +24,14 @@ class User:
 
 user = [];
 
-print(‘Informe seu nome: ‘)
+print(‘Informe seu nome:‘)
 name = input();
 
-print(‘Informe seu email: ‘)
+print(‘Informe seu email:‘)
 email = input();
 
-print(‘informe sua idade: ‘)
-age = input();
+print(‘informe sua idade:‘)
+age = int(input());
 
 person = User(name, email, age);
 print(person.name);
