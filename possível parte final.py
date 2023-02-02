@@ -17,9 +17,26 @@ class Database:
         return self.session_factory()
 
 class User:
-    def __init__(self, name, email):
+    def __init__(self, name, email,age):
         self.name = name
         self.email = email
+        self.age = age
+
+user = [];
+
+print(‘Informe seu nome: ‘)
+name = input();
+
+print(‘Informe seu email: ‘)
+email = input();
+
+print(‘informe sua idade: ‘)
+age = input();
+
+person = User(name, email, age);
+print(person.name);
+print(person.email);
+print(person.age);
 
 class UserSchema(Schema):
     name = fields.Str(required=True, min=3)
