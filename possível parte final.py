@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from marshmallow import Schema, fields, ValidationError
 Session = sessionmaker()
-session= Session
+session = Session
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
@@ -16,7 +16,7 @@ class Database:
     def create_session(self):
         return self.session_factory()
 
-class User:
+class user:
     def __init__(self, name, email,age):
         self.name = name
         self.email = email
@@ -33,7 +33,7 @@ email = input();
 print(‘informe sua idade:‘)
 age = int(input());
 
-person = User(name, email, age);
+person = user(name, email, age);
 print(person.name);
 print(person.email);
 print(person.age);
