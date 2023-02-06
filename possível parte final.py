@@ -24,7 +24,6 @@ class user:
 
 user = [];
 
-<<<<<<< HEAD
 print('Informe seu nome:')
 name = input();
 
@@ -32,15 +31,6 @@ print('Informe seu email')
 email = input();
 
 print('informe sua idade:')
-=======
-print(‘Informe seu nome:‘)
-name = input();
-
-print(‘Informe seu email:‘)
-email = input();
-
-print(‘informe sua idade:‘)
->>>>>>> e75dfe1a33ca4aedae4297c376f055e22479d047
 age = int(input());
 
 person = user(name, email, age);
