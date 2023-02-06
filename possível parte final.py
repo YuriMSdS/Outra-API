@@ -1,4 +1,5 @@
 import logging
+import re
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -22,21 +23,40 @@ class user:
         self.email = email
         self.age = age
 
-user = [];
+user = []
 
 print('Informe seu nome:')
-name = input();
+name = input().strip()
+if not name:
+    print('Nome inválido! Por favor, informe um nome válido.')
+    exit(1)
+if len(name) < 3:
+    print('Nome muito curto! Por favor, informe um nome com no mínimo 3 caracteres.')
+    exit(1)
+if len(name) > 100:
+    print('Nome muito longo! Por favor, informe um nome com no máximo 100 caracteres.')
+    exit(1)
 
-print('Informe seu email')
-email = input();
+print('Informe seu email:')
+email = input()
+if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+    print('Email inválido! Por favor, informe um email válido.')
+    exit(1)
 
-print('informe sua idade:')
-age = int(input());
+print('Informe sua idade:')
+try:
+    age = int(input())
+    if age <= 0:
+        print('Idade inválida! Por favor, informe uma idade válida.')
+        exit(1)
+except ValueError:
+    print('Idade inválida! Por favor, informe uma idade válida.')
+    exit(1)
 
-person = user(name, email, age);
-print(person.name);
-print(person.email);
-print(person.age);
+person = user(name, email, age)
+print(person.name)
+print(person.email)
+print(person.age)
 
 class UserSchema(Schema):
     name = fields.Str(required=True, min=3)
