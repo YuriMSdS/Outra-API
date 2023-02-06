@@ -3,8 +3,8 @@ import logging
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from marshmallow import Schema, fields, ValidationError
-Session = sessionmaker
-session= Session()
+Session = sessionmaker()
+session = Session
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 
@@ -16,10 +16,27 @@ class Database:
     def create_session(self):
         return self.session_factory()
 
-class User:
-    def __init__(self, name, email):
+class user:
+    def __init__(self, name, email,age):
         self.name = name
         self.email = email
+        self.age = age
+
+user = [];
+
+print('Informe seu nome:')
+name = input();
+
+print('Informe seu email')
+email = input();
+
+print('informe sua idade:')
+age = int(input());
+
+person = user(name, email, age);
+print(person.name);
+print(person.email);
+print(person.age);
 
 class UserSchema(Schema):
     name = fields.Str(required=True, min=3)
@@ -35,14 +52,14 @@ class UserRepository:
             return errors
         else:
             with self.db.create_session() as session:
-                new_user = User(name=user_data['name'], email=user_data['email'])
+                new_user = user(name=user_data['name'], email=user_data['email'])
                 session.add(new_user)
                 session.commit()
                 return "Usuário criado com sucesso"
 
     def get_all_users(self):
         with self.db.create_session() as session:
-            return session.query(User).all()
+            return session.query(user).all()
 
     def update_user(self, user_data):
         errors = UserSchema().validate(user_data)
@@ -50,7 +67,7 @@ class UserRepository:
             return errors
         else:
             with self.db.create_session() as session:
-                user_to_update = session.query(User).filter(User.name==user_data['name']).first()
+                user_to_update = session.query(user).filter(user.name==user_data['name']).first()
                 if user_to_update:
                     user_to_update.email = user_data['email']
                     session.commit()
@@ -60,7 +77,7 @@ class UserRepository:
 
     def delete_user(self, user_data):
         with self.db.create_session() as session:
-            user_to_delete = session.query(User).filter(User.name==user_data['name']).first()
+            user_to_delete = session.query(user).filter(user.name==user_data['name']).first()
             if user_to_delete:
                 session.delete(user_to_delete)
                 session.commit()
@@ -75,5 +92,3 @@ if __name__ == "__main__":
     
     finally:
         session.close()
-
-       
