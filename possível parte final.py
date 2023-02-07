@@ -49,6 +49,9 @@ try:
     if age <= 0:
         print('Idade inválida! Por favor, informe uma idade válida.')
         exit(1)
+    if age >= 99:
+        print('Idade inválida! Por favor, informe uma idade válida.')  
+        exit(1)  
 except ValueError:
     print('Idade inválida! Por favor, informe uma idade válida.')
     exit(1)
