@@ -25,36 +25,35 @@ class user:
 
 user = []
 
-print('Informe seu nome:')
-name = input().strip()
-if not name:
-    print('Nome inválido! Por favor, informe um nome válido.')
-    exit(1)
-if len(name) < 3:
-    print('Nome muito curto! Por favor, informe um nome com no mínimo 3 caracteres.')
-    exit(1)
-if len(name) > 100:
-    print('Nome muito longo! Por favor, informe um nome com no máximo 100 caracteres.')
-    exit(1)
+name = input("Informe seu nome: ")
+informaçoes_validas = False
 
-print('Informe seu email:')
-email = input()
-if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-    print('Email inválido! Por favor, informe um email válido.')
-    exit(1)
+while not informaçoes_validas:
+    if len(name) >= 3 and len(name) <= 100:
+        informaçoes_validas = True
+    else:
+        print("As informações inseridas são inválidas. Por favor, insira novamente")
+        name = input("Informe seu nome: ")
 
-print('Informe sua idade:')
-try:
-    age = int(input())
-    if age <= 0:
+
+informaçoes_validas = False
+while not informaçoes_validas:
+    email = input("Informe seu email: ")
+    if re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        informaçoes_validas = True
+    else:
+        print("Email inválido! Por favor, informe um email válido.")
+
+informaçoes_validas = False
+while not informaçoes_validas:
+    try:
+        age = int(input("Informe sua idade: "))
+        if age > 0 and age < 99:
+            informaçoes_validas = True
+        else:
+            print('Idade inválida! Por favor, informe uma idade válida.')
+    except ValueError:
         print('Idade inválida! Por favor, informe uma idade válida.')
-        exit(1)
-    if age >= 99:
-        print('Idade inválida! Por favor, informe uma idade válida.')  
-        exit(1)  
-except ValueError:
-    print('Idade inválida! Por favor, informe uma idade válida.')
-    exit(1)
 
 person = user(name, email, age)
 print(person.name)
