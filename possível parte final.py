@@ -48,7 +48,7 @@ informaçoes_validas = False
 while not informaçoes_validas:
     try:
         age = int(input("Informe sua idade: "))
-        if age > 0 and age < 99:
+        if age > 14 and age < 99:
             informaçoes_validas = True
         else:
             print('Idade inválida! Por favor, informe uma idade válida.')
