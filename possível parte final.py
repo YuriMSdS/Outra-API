@@ -107,6 +107,8 @@ class UserRepository:
             else:
                 return "Usuário não encontrado."
 
+
+
 if __name__ == "__main__":
     try:
         db = Database('postgresql://username:password@localhost:5432/database_name')
